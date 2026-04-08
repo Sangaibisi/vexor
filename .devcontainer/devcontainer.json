@@ -1,0 +1,49 @@
+{
+	"name": "Vectora",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
+        },
+		"ghcr.io/va-h/devcontainers-features/uv:1": {"version": "0.5.14"}
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": ["bash", ".devcontainer/script/boot.sh"],
+
+	// Configure tool-specific properties.
+	"customizations": {
+    "vscode": {
+		"settings": {
+			"[python]": {
+			"editor.codeActionsOnSave": {
+				"source.fixAll": "explicit",
+				"source.organizeImports": "explicit"
+			},
+			"editor.defaultFormatter": "charliermarsh.ruff"
+			},
+			"files.autoSave": "afterDelay"
+      },
+      "extensions": [
+				"charliermarsh.ruff",
+				"sonarsource.sonarlint-vscode",
+				"ms-azuretools.vscode-docker",
+				"docker.docker",
+				"tamasfe.even-better-toml",
+				"codeium.codeium",
+				"redhat.vscode-yaml",
+				"grapecity.gc-excelviewer",
+				"donjayamanne.githistory",
+				"eamodio.gitlens",
+				"ms-toolsai.jupyter",
+				"mechatroner.rainbow-csv"
+	  		]
+    	}
+  	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    "remoteUser": "root"
+}

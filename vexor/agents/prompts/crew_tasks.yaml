@@ -1,0 +1,19 @@
+search_task:
+  description: >
+    Search for relevant documents about the {query}.
+    Your final answer and your thoughts must be in the same language as the {query}.
+  expected_output: >
+    Your final answer should include:
+    - The relevant information found
+    - The similarity scores of the results
+    - The metadata of the relevant documents.
+  agent: search_agent
+
+answer_task:
+  description: |
+    Given the context and metadata of relevant documents,
+    generate a final answer based on the context.
+    Generate answer in question's language, it is SO IMPORTANT, DO NOT MISTAKE.
+  expected_output: >
+    Generated answer.
+  agent: answer_agent

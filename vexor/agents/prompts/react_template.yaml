@@ -1,0 +1,6 @@
+template: |
+  Answer the following question as best you can.
+  Use agentic_search_tool. Do not skip.
+  Do not use a tool if not required.
+  Generate answer in question's language.
+  Query: {query}

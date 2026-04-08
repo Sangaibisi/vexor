@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1020;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Blue glow gradient for V shape -->
+    <linearGradient id="vGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Node glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft glow for text -->
+    <filter id="textGlow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Strong center glow -->
+    <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Clip to rounded rect -->
+    <clipPath id="roundClip">
+      <rect width="600" height="300" rx="18" ry="18"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="300" rx="18" ry="18" fill="url(#bgGrad)"/>
+
+  <g clip-path="url(#roundClip)">
+    <!-- Subtle grid dots -->
+    <g opacity="0.07" fill="#4F8EFF">
+      <circle cx="50"  cy="50"  r="1.5"/><circle cx="110" cy="50"  r="1.5"/><circle cx="170" cy="50"  r="1.5"/>
+      <circle cx="430" cy="50"  r="1.5"/><circle cx="490" cy="50"  r="1.5"/><circle cx="550" cy="50"  r="1.5"/>
+      <circle cx="50"  cy="250" r="1.5"/><circle cx="110" cy="250" r="1.5"/><circle cx="170" cy="250" r="1.5"/>
+      <circle cx="430" cy="250" r="1.5"/><circle cx="490" cy="250" r="1.5"/><circle cx="550" cy="250" r="1.5"/>
+      <circle cx="50"  cy="150" r="1.5"/><circle cx="550" cy="150" r="1.5"/>
+    </g>
+
+    <!-- ── ICON: Vector graph / V-shape ── -->
+    <!-- 
+      Node positions:
+        A (top-left)  : 60, 70
+        B (top-right) : 180, 70
+        C (center)    : 120, 175   ← bottom of V (apex)
+        D (mid-left)  : 80, 130
+        E (mid-right) : 160, 130
+        F (top-mid)   : 120, 60    ← satellite
+    -->
+
+    <!-- Connection lines (back layer) -->
+    <g stroke="#3B82F6" stroke-width="1.5" opacity="0.35">
+      <line x1="60"  y1="70"  x2="120" y2="175"/>
+      <line x1="180" y1="70"  x2="120" y2="175"/>
+      <line x1="60"  y1="70"  x2="80"  y2="130"/>
+      <line x1="180" y1="70"  x2="160" y2="130"/>
+      <line x1="80"  y1="130" x2="120" y2="175"/>
+      <line x1="160" y1="130" x2="120" y2="175"/>
+      <line x1="80"  y1="130" x2="160" y2="130"/>
+      <line x1="60"  y1="70"  x2="120" y2="60"/>
+      <line x1="180" y1="70"  x2="120" y2="60"/>
+    </g>
+
+    <!-- V thick strokes (glowing arms) -->
+    <g filter="url(#glow)">
+      <line x1="60" y1="70" x2="120" y2="175" stroke="url(#vGrad)" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="180" y1="70" x2="120" y2="175" stroke="url(#vGrad)" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Nodes -->
+    <g filter="url(#glow)">
+      <!-- Satellite top -->
+      <circle cx="120" cy="60"  r="4"   fill="#7C3AED" opacity="0.9"/>
+      <!-- Top corners -->
+      <circle cx="60"  cy="70"  r="5.5" fill="#3B82F6"/>
+      <circle cx="180" cy="70"  r="5.5" fill="#3B82F6"/>
+      <!-- Mid -->
+      <circle cx="80"  cy="130" r="4"   fill="#60A5FA"/>
+      <circle cx="160" cy="130" r="4"   fill="#60A5FA"/>
+      <!-- Apex (bright) -->
+      <circle cx="120" cy="175" r="7"   fill="#fff" filter="url(#strongGlow)" opacity="0.95"/>
+    </g>
+
+    <!-- Outer ring around apex -->
+    <circle cx="120" cy="175" r="14" fill="none" stroke="#3B82F6" stroke-width="1" opacity="0.4"/>
+
+    <!-- ── WORDMARK ── -->
+    <!-- VEXOR -->
+    <text
+      x="220" y="148"
+      font-family="'Segoe UI', 'SF Pro Display', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+      font-size="72"
+      font-weight="800"
+      letter-spacing="-1"
+      fill="white"
+      filter="url(#textGlow)"
+    >VEXOR</text>
+
+    <!-- Tagline -->
+    <text
+      x="221" y="178"
+      font-family="'Segoe UI', 'SF Pro Display', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+      font-size="14"
+      font-weight="400"
+      letter-spacing="3.5"
+      fill="#60A5FA"
+      opacity="0.85"
+    >VECTOR SEARCH ENGINE</text>
+
+    <!-- Accent line under tagline -->
+    <line x1="221" y1="188" x2="530" y2="188" stroke="url(#vGrad)" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- Version pill -->
+    <rect x="221" y="200" width="88" height="22" rx="11" fill="#3B82F6" opacity="0.15"/>
+    <rect x="221" y="200" width="88" height="22" rx="11" fill="none" stroke="#3B82F6" stroke-width="1" opacity="0.4"/>
+    <text
+      x="265" y="215"
+      font-family="'Segoe UI', monospace, sans-serif"
+      font-size="11"
+      font-weight="600"
+      fill="#93C5FD"
+      text-anchor="middle"
+      letter-spacing="1"
+    >v3.0 · beta</text>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+# File Map for Vexor Project
+
+## Root Files
+- pyproject.toml — Project config, dependencies, tools
+- AGENTS.md — Agent/AI assistant guidelines
+- README.md — Project documentation
+- .env-dev — Development environment variables
+
+## vexor/ (main package)
+- __init__.py — Public API exports + version
+- errors.py — Exception hierarchy (VexorError base)
+- _helpers.py — Pure utility functions (iter_batches, normalize_to_list, etc.)
+
+## vexor/config/ (Pydantic configuration)
+- __init__.py — Re-exports all config types
+- settings.py — VexorSettings (top-level aggregator)
+- connection.py — ServerConnectionSpec, S3Credentials, RemoteStorageSpec
+- collection.py — CollectionSpec, index types, HnswSpec, OptimizerSpec
+- embedding.py — DenseModelSpec, SparseModelSpec, EmbeddingSpec
+- ingestion.py — IngestionSpec, DataFormat enum
+- segmentation.py — SegmentationSpec, SegmentationMethod enum
+- filtering.py — FilterSpec, ConditionBuilder
+- llm.py — LLMSpec
+- observability.py — TracingSpec, LogSpec
+- search.py — SearchParams, RecommendParams, FacetParams
+- request.py — SingleQuery, BatchQuery, RecommendQuery, etc.
+
+## vexor/core/ (connection + collection management)
+- session.py — VexorSession (QdrantClient wrapper + resources)
+- collection_manager.py — CollectionManager (create/delete/snapshot)
+- shard_manager.py — ShardManager (shard key handling)
+- cluster_info.py — ClusterInspector (REST cluster queries)
+
+## vexor/embedding/ (model loading)
+- protocol.py — Embedder Protocol (typing.Protocol)
+- fastembed_adapter.py — FastEmbedAdapter
+- sbert_adapter.py — SentenceBERTAdapter
+- loader.py — load_embedder() factory
+
+## vexor/ingestion/ (data loading + training)
+- pipeline.py — IngestionPipeline (orchestrates full ingest)
+- readers.py — read_parquet(), read_pdf(), read_s3()
+- column_resolver.py — ColumnResolver
+- text_builder.py — TextBuilder
+
+## vexor/search/ (query + recommend)
+- engine.py — SearchEngine
+- hybrid.py — hybrid_search(), _build_prefetch()
+- recommender.py — Recommender
+- digital_twin.py — DigitalTwinRecommender
+- validators.py — Guard functions
+
+## vexor/agents/ (agentic RAG)
+- crew_agent.py — CrewSearchAgent
+- react_agent.py — ReactSearchAgent
+- search_tool.py — VectorSearchTool (shared)
+- prompts/ — YAML config files
+
+## vexor/storage/ (external storage)
+- duckdb_connector.py — DuckDBConnector
+- s3_uploader.py — S3DataUploader
+
+## vexor/llm/ (LLM clients)
+- client_factory.py — create_llm_client(), create_llm_provider()
+- tracing_factory.py — create_tracer()
+
+## vexor/segmentation/ (text chunking)
+- chunker_factory.py — create_chunker()
+
+## vexor/observability/ (logging)
+- log_setup.py — configure_logging()
+
+## vexor/examples/
+- env_config.py — Environment config loader
+- ingest_tabular.py — Tabular data ingestion example
+- search_dense.py — Dense search example
