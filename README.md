@@ -4,7 +4,7 @@
 
 # Vexor
 
-**Advanced vector similarity search engine (develop build) built on [Qdrant](https://qdrant.tech/)**
+**Fast vector similarity search engine (develop build) built on [Qdrant](https://qdrant.tech/)**
 
 [![Python](https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
